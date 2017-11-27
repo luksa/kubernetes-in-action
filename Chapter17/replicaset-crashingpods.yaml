@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: crashing-pods
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: crashing-pods
+    spec:
+      containers:
+      - image: busybox
+        name: main
+        command:
+        - sh
+        - -c
+        - 'exit 1'

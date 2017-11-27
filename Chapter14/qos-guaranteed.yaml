@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-guaranteed
+spec:
+  containers:
+  - image: busybox
+    args: ["sleep", "9999999"]
+    name: main
+    resources:
+      requests:
+        cpu: 100m
+        memory: 10Mi
+      limits:
+        cpu: 100m
+        memory: 10Mi
+  - image: busybox
+    args: ["sleep", "9999999"]
+    name: sidecar
+    resources:
+      requests:
+        cpu: 200m
+        memory: 20Mi
+      limits:
+        cpu: 200m
+        memory: 20Mi
+  terminationGracePeriodSeconds: 0

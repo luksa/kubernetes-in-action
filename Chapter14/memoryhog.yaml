@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memoryhog
+spec:
+  containers:
+  - image: docker.io/luksa/memoryhog
+    args: ["1500000000"]
+    name: main
+    resources:
+      requests:
+        cpu: 0
+        memory: 0
+      limits:
+        cpu: 500m
+        memory: 10Mi

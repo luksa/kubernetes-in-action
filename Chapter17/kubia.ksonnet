@@ -1,0 +1,11 @@
+local k = import "../ksonnet-lib/ksonnet.beta.1/k.libsonnet";
+
+local container = k.core.v1.container;
+local deployment = k.apps.v1beta1.deployment;
+
+local kubiaContainer =
+  container.default("kubia", "luksa/kubia:v1") +
+  container.helpers.namedPort("http", 8080);
+
+deployment.default("kubia", kubiaContainer) +
+deployment.mixin.spec.replicas(3)  

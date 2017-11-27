@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: shoppingcart-netpolicy
+spec:
+  podSelector:
+    matchLabels:
+      app: shopping-cart 
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          tenant: manning
+    ports:
+    - port: 80

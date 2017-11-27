@@ -1,0 +1,7 @@
+apiVersion: extensions.example.com/v1
+kind: Website
+metadata:
+  name: k8s-site
+spec:
+  gitRepo: https://github.com/kubernetes/kubernetes.github.io
+

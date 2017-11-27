@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-termination-message
+spec:
+  containers:
+  - image: busybox
+    name: main
+    command:
+    - sh
+    - -c
+    - 'echo "I''ve had enough" > /var/termination-reason ; exit 1'
+    terminationMessagePath: /var/termination-reason
+

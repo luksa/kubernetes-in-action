@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: website-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: website-controller
+      labels:
+        app: website-controller
+    spec:
+      serviceAccountName: website-controller
+      containers:
+      - name: main
+        image: luksa/website-controller
+      - name: proxy
+        image: luksa/kubectl-proxy:1.6.2

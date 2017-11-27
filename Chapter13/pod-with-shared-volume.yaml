@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-shared-volume
+spec:
+  containers:
+  - name: first
+    image: alpine
+    command: ["/bin/sleep", "999999"]
+    securityContext:
+      runAsUser: 1111
+    volumeMounts:
+    - name: shared-volume
+      mountPath: /volume
+      readOnly: false
+  - name: second
+    image: alpine
+    command: ["/bin/sleep", "999999"]
+    securityContext:
+      runAsUser: 2222
+    volumeMounts:
+    - name: shared-volume
+      mountPath: /volume
+      readOnly: false
+  volumes:
+  - name: shared-volume
+    emptyDir:

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: objects
+spec:
+  hard:
+    pods: 10
+    replicationcontrollers: 5
+    secrets: 10
+    configmaps: 10
+    persistentvolumeclaims: 5
+    services: 5
+    services.loadbalancers: 1
+    services.nodeports: 2
+    ssd.storageclass.storage.k8s.io/persistentvolumeclaims: 2

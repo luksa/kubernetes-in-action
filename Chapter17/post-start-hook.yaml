@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-poststart-hook
+spec:
+  containers:
+  - image: luksa/kubia
+    name: kubia
+    lifecycle:
+      postStart:
+        exec:
+          command: 
+          - sh
+          - -c
+          - "echo 'hook will fail with exit code 15'; sleep 5 ; exit 15"

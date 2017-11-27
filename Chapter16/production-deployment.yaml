@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prod
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: prod
+    spec:
+      containers:
+      - args:
+        - sleep
+        - "99999"
+        image: busybox
+        name: main
+      tolerations:
+      - key: node-type
+        operator: Equal
+        value: production
+        effect: NoSchedule

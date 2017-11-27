@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: successful-pod-with-termination-message
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - image: busybox
+    name: main
+    command:
+    - sh
+    - -c
+    - 'echo "I''ve completed my task" > /var/termination-reason ; exit 0'
+    terminationMessagePath: /var/termination-reason
+

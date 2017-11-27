@@ -1,0 +1,9 @@
+apiVersion: servicecatalog.k8s.io/v1alpha1
+kind: Binding
+metadata:
+  name: my-postgres-db-binding
+spec:
+  instanceRef:
+    name: my-postgres-db
+  secretName: postgres-secret
+

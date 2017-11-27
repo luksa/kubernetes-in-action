@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-burstable
+spec:
+  containers:
+  - image: busybox
+    args: ["sleep", "9999999"]
+    name: main
+    resources:
+      requests:
+        cpu: 100m
+  - image: busybox
+    args: ["sleep", "9999999"]
+    name: sidecar
+  terminationGracePeriodSeconds: 0

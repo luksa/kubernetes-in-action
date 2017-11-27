@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune-client
+spec:
+  initContainers:
+  - name: init
+    image: busybox
+    command:
+    - sh
+    - -c
+    - 'while true; do echo "Waiting for fortune service to come up..."; wget http://fortune -q -T 1 -O /dev/null >/dev/null 2>/dev/null && break; sleep 1; done; echo "Service is up! Starting main container."'
+  containers:
+  - image: busybox
+    name: main
+    command:
+    - sh
+    - -c
+    - 'echo "Main container started. Reading fortune very 10 seconds."; while true; do echo "-------------"; wget -q -O - http://fortune; sleep 10; done'

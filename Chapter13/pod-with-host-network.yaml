@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-host-network
+spec:
+  hostNetwork: true
+  containers:
+  - name: main
+    image: alpine
+    command: ["/bin/sleep", "999999"]
