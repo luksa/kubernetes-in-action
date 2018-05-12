@@ -27,6 +27,10 @@ spec:
     - name: config
       mountPath: /tmp/whole-fortune-config-volume
       readOnly: true
+    ports:
+      - containerPort: 80
+        name: http
+        protocol: TCP
   volumes:
   - name: html
     emptyDir: {}
