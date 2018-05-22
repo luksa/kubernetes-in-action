@@ -7,7 +7,7 @@ spec:
   - name: mongodb-data
     gcePersistentDisk:
       pdName: mongodb
-      fsType: nfs4
+      fsType: ext4
   containers:
   - image: mongo
     name: mongodb
