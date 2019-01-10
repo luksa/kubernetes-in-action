@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongodb-pvc 
 spec:
-  storageClassName: fast2
+  storageClassName: fast
   resources:
     requests:
       storage: 100Mi
