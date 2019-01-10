@@ -11,4 +11,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   gcePersistentDisk:
     pdName: mongodb
-    fsType: nfs4
+    fsType: ext4
