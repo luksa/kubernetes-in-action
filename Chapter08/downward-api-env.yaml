@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: downward
+  name: downward-env
 spec:
   containers:
   - name: main
