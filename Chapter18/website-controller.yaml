@@ -8,14 +8,14 @@ spec:
   matchLabels:
    app: website-controller
  template:
-  metadata:
-   name: website-controller
-   labels:
-    app: website-controller
-  spec:
-   serviceAccountName: website-controller
-   containers:
-   - name: main
-     image: luksa/website-controller
-   - name: proxy
-     image: luksa/kubectl-proxy:1.6.2
+   metadata:
+    name: website-controller
+    labels:
+     app: website-controller
+   spec:
+    serviceAccountName: website-controller
+    containers:
+    - name: main
+      image: luksa/website-controller
+    - name: proxy
+      image: luksa/kubectl-proxy:1.6.2
