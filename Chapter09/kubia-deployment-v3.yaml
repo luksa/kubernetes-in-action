@@ -1,10 +1,13 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kubia
 spec:
   replicas: 3
   minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: kubia
   template:
     metadata:
       name: kubia
