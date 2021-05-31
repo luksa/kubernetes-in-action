@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: kubia-all
 spec:
+  clusterIP: None
   ports:
   - port: 80
     targetPort: 8080
