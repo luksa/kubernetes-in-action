@@ -14,20 +14,23 @@ spec:
         app: kubia
     spec:
       containers:
-      - name: kubia
-        image: luksa/kubia-pet
-        ports:
-        - name: http
-          containerPort: 8080
-        volumeMounts:
-        - name: data
-          mountPath: /var/data
+        - name: kubia
+          image: luksa/kubia-pet
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: data
+              mountPath: /var/data
   volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      resources:
-        requests:
-          storage: 1Mi
-      accessModes:
-      - ReadWriteOnce
+    - metadata:
+        name: data
+      spec:
+        resources:
+          requests:
+            storage: 1Mi
+        accessModes:
+          - ReadWriteOnce
+        # If you already created persistent volumes, then
+        # uncomment below field to use existing persistent volumes(disable dynamic provisioning)
+        # storageClassName: ""
