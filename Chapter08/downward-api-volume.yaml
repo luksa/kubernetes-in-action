@@ -18,10 +18,10 @@ spec:
     resources:
       requests:
         cpu: 15m
-        memory: 100Ki
+        memory: 64Mi
       limits:
         cpu: 100m
-        memory: 4Mi
+        memory: 128Mi
     volumeMounts:
     - name: downward
       mountPath: /etc/downward
