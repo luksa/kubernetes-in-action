@@ -1,42 +1,45 @@
-name: Deploy Image to ECR
+name: Deploy to ECR
 
-on:
+on: 
   push:
     branches: [ master ]
-    
+
 jobs:
   
   build:
-    #THis is the workflow to build the image
+    
     name: Build Image
     runs-on: ubuntu-latest
 
+   
     steps:
-    
-    - name: Checkout Code
-      uses: actions/checkout@v3
 
-    - name: Login into Amazon ECR
-       id: login-ecr
-       uses: aws-actions/amazon-ecr-login@v1
-       env:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+      env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         AWS_REGION: us-east-1
-          
-    - name: build,test,tag, and push image to Amazon ECR
+
+    - name: Build, test, tag, and push image to Amazon ECR
       env:
-       ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-       ECR_REPOSITORY: clo835-week3
-       IMAGE_TAG: v0.1
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: clo835-week3
+        IMAGE_TAG: v0.1
       run: |
-       cd Chapter02/kubia/
-       ls -ltra
-       docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-       docker run -d -p 80:8080 --name nodeapp $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-       docker ps
-       echo "Pause for 10 seconds to let the container start"
-       sleep 10
-       curl localhost -vvv
-       docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        cd Chapter02/kubia/
+        ls -ltra
+        # Docker build
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        # Unit test
+        docker run -d -p 80:8080 --name nodeapp $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker ps
+        echo "Pause for 10 seconds to let container start"
+        sleep 10
+        curl localhost -vvv
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
