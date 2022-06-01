@@ -7,7 +7,7 @@ on:
 jobs:
   
   build:
-
+    #THis is the workflow to build the image
     name: Build Image
     runs-on: ubuntu-latest
 
