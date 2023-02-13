@@ -1,0 +1,8 @@
+During application of Kubernetes in AWS EKS, I see it would save the reader few hours of working if in the section 6.4.2 (Using an AWS Elastic Block Store), we add some note to remind the reader that the EBS volume must in the same AZ with Pod, otherwise Kubernetes can not create volumeattachment.
+
+This is also the feature of AWS EBS, I myself forget this, and it tooks me few hours to fingure it out.
+
+My temporary solution when using EBS for pod is:
+- Label the node that is in the same AZ with EBS.
+- Add nodeSelector to the Pod so that it is assigned to node that is in the same AZ with EBS volume.
+
