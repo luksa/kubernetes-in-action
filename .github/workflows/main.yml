@@ -30,7 +30,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: clo835-week3
-        IMAGE_TAG: v0.1
+        IMAGE_TAG: v1.1
       run: |
         cd Chapter02/kubia/
         ls -ltra
